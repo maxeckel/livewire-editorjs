@@ -1,0 +1,54 @@
+{
+    "name": "maxeckel/livewire-editorjs",
+    "description": "This Package aims for an easy integration of Editor.JS with Laravel Livewire",
+    "keywords": [
+        "maxeckel",
+        "livewire-editorjs"
+    ],
+    "homepage": "https://github.com/maxeckel/livewire-editorjs",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Max Eckel",
+            "email": "max.eckel@outlook.de",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "illuminate/support": "^6.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maxeckel\\LivewireEditorjs\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Maxeckel\\LivewireEditorjs\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Maxeckel\\LivewireEditorjs\\LivewireEditorjsServiceProvider"
+            ],
+            "aliases": {
+                "LivewireEditorjs": "Maxeckel\\LivewireEditorjs\\LivewireEditorjsFacade"
+            }
+        }
+    }
+}
