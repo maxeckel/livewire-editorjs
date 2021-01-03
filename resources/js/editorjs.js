@@ -5,6 +5,7 @@ import Header from '@editorjs/header';
 import Underline from '@editorjs/underline';
 import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
+import Quote from '@editorjs/quote';
 
 window.editorInstance = function(dataProperty) {
     return {
@@ -35,7 +36,10 @@ window.editorInstance = function(dataProperty) {
                                                     console.log('Here i am!')
 
                                                     resolve({
-                                                        success: 0,
+                                                        success: 1,
+                                                        file: {
+                                                            url: event.detail.url
+                                                        }
                                                     });
 
                                                     window.removeEventListener(eventName, storeListener);
@@ -66,7 +70,8 @@ window.editorInstance = function(dataProperty) {
                     header: Header,
                     underline: Underline,
                     code: Code,
-                    'inline-code': InlineCode
+                    'inline-code': InlineCode,
+                    quote: Quote
                 },
 
                 data: this.data,
