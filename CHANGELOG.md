@@ -2,6 +2,6 @@
 
 All notable changes to `livewire-editorjs` will be documented in this file
 
-## 1.0.0 - 201X-XX-XX
+## 0.1.0 - 2021-01-03
 
-- initial release
+- Initial release of the package
