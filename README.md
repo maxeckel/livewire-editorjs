@@ -1,8 +1,6 @@
 # Easy integration of Editor.js in Laravel Livewire
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
-[![Build Status](https://img.shields.io/travis/maxeckel/livewire-editorjs/master.svg?style=flat-square)](https://travis-ci.org/maxeckel/livewire-editorjs)
-[![Quality Score](https://img.shields.io/scrutinizer/g/maxeckel/livewire-editorjs.svg?style=flat-square)](https://scrutinizer-ci.com/g/maxeckel/livewire-editorjs)
 [![Total Downloads](https://img.shields.io/packagist/dt/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
 
 This Package adds a Livewire component to your application, which will create an Editor.js instance for you.
