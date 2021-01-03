@@ -1,3 +1,3 @@
-<div x-data="editorInstance('data')" x-init="init()" class="{{ $class }}" wire:ignore>
-    <div id="editorjs"></div>
+<div x-data="editorInstance('data', {{ $editorId }})" x-init="init()" class="{{ $class }}" wire:ignore>
+    <div id="{{ $editorId }}"></div>
 </div>

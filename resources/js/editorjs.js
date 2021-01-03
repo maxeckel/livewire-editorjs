@@ -7,7 +7,7 @@ import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Quote from '@editorjs/quote';
 
-window.editorInstance = function(dataProperty) {
+window.editorInstance = function(dataProperty, editorId) {
     return {
         instance: null,
         data: null,
@@ -16,7 +16,7 @@ window.editorInstance = function(dataProperty) {
             this.data = this.$wire.get(dataProperty);
 
             this.instance = new EditorJS({
-                holder: 'editorjs',
+                holder: editorId,
 
                 tools: {
                     image: {
