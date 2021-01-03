@@ -23,7 +23,7 @@ class EditorJS extends Component
 
     public $downloadDisk;
 
-    public function mount($editorId, $value = [], $class = "", $uploadDisk = null, $downloadDisk = null)
+    public function mount($editorId, $value = [], $class = '', $uploadDisk = null, $downloadDisk = null)
     {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
