@@ -13,6 +13,8 @@ class EditorJS extends Component
 
     public $uploads = [];
 
+    public $editorId;
+
     public $data;
 
     public $class;
@@ -21,7 +23,7 @@ class EditorJS extends Component
 
     public $downloadDisk;
 
-    public function mount($value = [], $class = "", $uploadDisk = null, $downloadDisk = null)
+    public function mount($editorId, $value = [], $class = "", $uploadDisk = null, $downloadDisk = null)
     {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
@@ -31,6 +33,7 @@ class EditorJS extends Component
             $downloadDisk = config('livewire-editorjs.default_img_download_disk');
         }
 
+        $this->editorId = $editorId;
         $this->data = $value;
         $this->class = $class;
         $this->uploadDisk = $uploadDisk;
@@ -63,7 +66,7 @@ class EditorJS extends Component
 
     public function save()
     {
-        $this->emitUp('editorjs-save', $this->data);
+        $this->emitUp("editorjs-save:{$this->editorId}", $this->data);
     }
 
     public function render()
