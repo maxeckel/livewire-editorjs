@@ -47,7 +47,7 @@ window.editorInstance = function(dataProperty, editorId) {
 
                                                 window.addEventListener(eventName, storeListener);
 
-                                                this.$wire.call('completedUpload', uploadedFilename, eventName);
+                                                this.$wire.call('completedImageUpload', uploadedFilename, eventName);
                                             }
                                         );
                                     });

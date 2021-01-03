@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
 [![Total Downloads](https://img.shields.io/packagist/dt/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
+![GitHub](https://img.shields.io/github/license/maxeckel/livewire-editorjs)
 
 This Package adds a Livewire component to your application, which will create an Editor.js instance for you.
 

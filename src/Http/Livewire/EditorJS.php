@@ -40,7 +40,7 @@ class EditorJS extends Component
         $this->downloadDisk = $downloadDisk;
     }
 
-    public function completedUpload(string $uploadedFileName, string $eventName)
+    public function completedImageUpload(string $uploadedFileName, string $eventName)
     {
         /** @var TemporaryUploadedFile $tmpFile */
         $tmpFile = collect($this->uploads)
