@@ -19,11 +19,13 @@ class EditorJS extends Component
 
     public $class;
 
+    public bool $readOnly;
+
     public $uploadDisk;
 
     public $downloadDisk;
 
-    public function mount($editorId, $value = [], $class = '', $uploadDisk = null, $downloadDisk = null)
+    public function mount($editorId, $value = [], $class = '', $uploadDisk = null, $downloadDisk = null, $readOnly = false)
     {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
@@ -38,6 +40,7 @@ class EditorJS extends Component
         $this->class = $class;
         $this->uploadDisk = $uploadDisk;
         $this->downloadDisk = $downloadDisk;
+        $this->readOnly = $readOnly;
     }
 
     public function completedImageUpload(string $uploadedFileName, string $eventName)

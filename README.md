@@ -106,6 +106,7 @@ changes you made. Please check the changelog after you updated this package.
     'uploadDisk' => 'public',
     'downloadDisk' => 'public',
     'class' => '...'
+    'readOnly' => true
 ])
 ```
 
@@ -116,6 +117,7 @@ changes you made. Please check the changelog after you updated this package.
    upload-disk="public" 
    download-disk="public" 
    class="..." 
+   :read-only="true"
 />
 ```
 
@@ -138,6 +140,8 @@ This parameter is optional. The default disk to store images in is defined withi
 
 `config/livewire-editorjs.php` => `default_upload_img_disk`
 
+Default: `public`
+
 #### downloadDisk (optional)
 
 The `downloadDisk` parameter defines the disk, to which downloaded images should be stored. 
@@ -146,10 +150,21 @@ This parameter is optional. The default disk to store images in is defined withi
 
 `config/livewire-editorjs.php` => `default_download_img_disk`
 
-#### class
+Default: `public
+
+#### class (optional)
 
 As the name suggests you can pass in CSS classes as you would with any other component.  
 For styling the Editor/Blocks, please refer to the [documentation](https://editorjs.io/styles) of Editor.js
+
+Default: ""
+
+#### readOnly (optional)
+
+You can pass this parameter with an value of "true" to set the editor into read only mode.
+This might be useful, if you want to display articles the same way, as they have been created.
+
+Default: `false`
 
 ### Events / Saving state
 

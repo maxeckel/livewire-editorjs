@@ -7,7 +7,7 @@ import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Quote from '@editorjs/quote';
 
-window.editorInstance = function(dataProperty, editorId) {
+window.editorInstance = function(dataProperty, editorId, readOnly) {
     return {
         instance: null,
         data: null,
@@ -17,6 +17,8 @@ window.editorInstance = function(dataProperty, editorId) {
 
             this.instance = new EditorJS({
                 holder: editorId,
+
+                readOnly,
 
                 tools: {
                     image: {
