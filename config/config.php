@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'component_class' => \Maxeckel\LivewireEditorjs\Http\Livewire\EditorJS::class,
+    'enabled_component_registration' => true,
 
     'component_name' => 'editorjs',
 

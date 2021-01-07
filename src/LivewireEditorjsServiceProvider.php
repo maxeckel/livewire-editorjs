@@ -33,11 +33,12 @@ class LivewireEditorjsServiceProvider extends ServiceProvider
 
         // Add Livewire component
         $this->app->afterResolving(BladeCompiler::class, function () {
-            if (class_exists(Livewire::class)) {
-                $componentClass = config('livewire-editorjs.component_class', EditorJS::class);
+            $enabledComponentRegistration = config('livewire-editorjs.enabled_component_registration', true);
+
+            if (class_exists(Livewire::class) && $enabledComponentRegistration) {
                 $componentName = config('livewire-editorjs.component_name', 'editorjs');
 
-                Livewire::component($componentName, $componentClass);
+                Livewire::component($componentName, EditorJS::class);
             }
         });
 
