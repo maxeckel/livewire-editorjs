@@ -4,7 +4,9 @@ namespace Maxeckel\LivewireEditorjs;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 use Livewire\Livewire;
+use Maxeckel\LivewireEditorjs\Console\MakeEditorJsComponent;
 use Maxeckel\LivewireEditorjs\Http\Livewire\EditorJS;
 
 class LivewireEditorjsServiceProvider extends ServiceProvider
@@ -18,8 +20,7 @@ class LivewireEditorjsServiceProvider extends ServiceProvider
 
         $this->registerPublishables();
         $this->registerDirectives();
-
-        Livewire::component('editorjs', EditorJS::class);
+        $this->registerCommands();
     }
 
     /**
@@ -29,6 +30,16 @@ class LivewireEditorjsServiceProvider extends ServiceProvider
     {
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'livewire-editorjs');
+
+        // Add Livewire component
+        $this->app->afterResolving(BladeCompiler::class, function () {
+            if (class_exists(Livewire::class)) {
+                $componentClass = config('livewire-editorjs.component_class', EditorJS::class);
+                $componentName = config('livewire-editorjs.component_name', 'editorjs');
+
+                Livewire::component($componentName, $componentClass);
+            }
+        });
 
         // Register the main class to use with the facade
         $this->app->singleton('livewire-editorjs', function () {
@@ -71,5 +82,16 @@ class LivewireEditorjsServiceProvider extends ServiceProvider
                 <script src="$scriptsUrl"></script>
             EOF;
         });
+    }
+
+    private function registerCommands()
+    {
+        if (! $this->app->runningInConsole()) {
+            return;
+        }
+
+        $this->commands([
+            MakeEditorJsComponent::class,
+        ]);
     }
 }
