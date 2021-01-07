@@ -1,3 +1,3 @@
-<div x-data="editorInstance('data', '{{ $editorId }}', {{ $readOnly }})" x-init="init()" class="{{ $class }}" wire:ignore>
+<div x-data="editorInstance('data', '{{ $editorId }}', {{ $readOnly ? 'true' : 'false' }})" x-init="init()" class="{{ $class }}" style="{{ $style }}" wire:ignore>
     <div id="{{ $editorId }}"></div>
 </div>

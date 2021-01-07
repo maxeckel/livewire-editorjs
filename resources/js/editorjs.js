@@ -35,8 +35,6 @@ window.editorInstance = function(dataProperty, editorId, readOnly) {
                                                 const eventName = `fileupload:${uploadedFilename.substr(0, 20)}`;
 
                                                 const storeListener = (event) => {
-                                                    console.log('Here i am!')
-
                                                     resolve({
                                                         success: 1,
                                                         file: {

@@ -19,13 +19,23 @@ class EditorJS extends Component
 
     public $class;
 
-    public bool $readOnly;
+    public $style;
+
+    public $readOnly;
 
     public $uploadDisk;
 
     public $downloadDisk;
 
-    public function mount($editorId, $value = [], $class = '', $uploadDisk = null, $downloadDisk = null, $readOnly = false)
+    public function mount(
+        $editorId,
+        $value = [],
+        $class = '',
+        $style = '',
+        $uploadDisk = null,
+        $downloadDisk = null,
+        $readOnly = false
+    )
     {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
@@ -38,19 +48,27 @@ class EditorJS extends Component
         $this->editorId = $editorId;
         $this->data = $value;
         $this->class = $class;
+        $this->style = $style;
         $this->uploadDisk = $uploadDisk;
         $this->downloadDisk = $downloadDisk;
         $this->readOnly = $readOnly;
     }
 
-    public function completedImageUpload(string $uploadedFileName, string $eventName)
+    public function completedImageUpload(string $uploadedFileName, string $eventName, $fileName = null)
     {
         /** @var TemporaryUploadedFile $tmpFile */
         $tmpFile = collect($this->uploads)
-            ->filter(fn (TemporaryUploadedFile $item) => $item->getFilename() === $uploadedFileName)
+            ->filter(function (TemporaryUploadedFile $item) use ($uploadedFileName) {
+                return $item->getFilename() === $uploadedFileName;
+            })
             ->first();
 
-        $storedFileName = $tmpFile->store('/', $this->uploadDisk);
+        // When no file name is passed, we use the hashName of the tmp file
+        $storedFileName = $tmpFile->storeAs(
+            '/',
+            $fileName ?? $tmpFile->hashName(),
+            $this->uploadDisk
+        );
 
         $this->dispatchBrowserEvent($eventName, [
             'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
