@@ -9,7 +9,7 @@ use Maxeckel\LivewireEditorjs\Tests\TestCase;
 class MakeEditorJsComponentTest extends TestCase
 {
     /** @test */
-    function it_creates_a_new_editorjs_component()
+    public function it_creates_a_new_editorjs_component()
     {
         $componentClass = app_path('Http/Livewire/TestEditorJs.php');
 

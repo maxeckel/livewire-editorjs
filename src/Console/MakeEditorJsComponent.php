@@ -14,11 +14,11 @@ class MakeEditorJsComponent extends GeneratorCommand
 
     protected function getStub()
     {
-        return __DIR__ . '/stubs/component.php.stub';
+        return __DIR__.'/stubs/component.php.stub';
     }
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        return $rootNamespace . '\Http\Livewire';
+        return $rootNamespace.'\Http\Livewire';
     }
 }
