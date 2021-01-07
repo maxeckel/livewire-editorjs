@@ -14,11 +14,11 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             LivewireServiceProvider::class,
-            LivewireEditorjsServiceProvider::class
+            LivewireEditorjsServiceProvider::class,
         ];
     }
 
-    protected function createComponent($parameters = []) : TestableLivewire
+    protected function createComponent($parameters = []): TestableLivewire
     {
         return Livewire::test(EditorJS::class, $parameters);
     }

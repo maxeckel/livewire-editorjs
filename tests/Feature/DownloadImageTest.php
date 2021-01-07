@@ -29,7 +29,7 @@ class DownloadImageTest extends TestCase
 
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'downloadDisk' => $diskName
+            'downloadDisk' => $diskName,
         ]);
 
         $component
