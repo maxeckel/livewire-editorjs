@@ -45,7 +45,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'class' => 'test-class'
+            'class' => 'test-class',
         ]);
 
         $component->assertSeeHtml('class="test-class"');
@@ -56,7 +56,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'style' => 'border-color: rgb(125, 125, 125)'
+            'style' => 'border-color: rgb(125, 125, 125)',
         ]);
 
         $component->assertSeeHtml('style="border-color: rgb(125, 125, 125)"');
@@ -67,7 +67,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'uploadDisk' => 'dummy'
+            'uploadDisk' => 'dummy',
         ]);
 
         $component->set('uploadDisk', 'dummy');
@@ -78,7 +78,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'downloadDisk' => 'dummy'
+            'downloadDisk' => 'dummy',
         ]);
 
         $component->set('downloadDisk', 'dummy');
@@ -89,7 +89,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'readOnly' => true
+            'readOnly' => true,
         ]);
 
         $component->set('readOnly', true);

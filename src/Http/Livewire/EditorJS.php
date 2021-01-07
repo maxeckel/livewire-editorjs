@@ -35,8 +35,7 @@ class EditorJS extends Component
         $uploadDisk = null,
         $downloadDisk = null,
         $readOnly = false
-    )
-    {
+    ) {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
         }
