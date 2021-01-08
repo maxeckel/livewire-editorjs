@@ -1,8 +1,9 @@
 # Easy integration of Editor.js in Laravel Livewire
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
-[![Total Downloads](https://img.shields.io/packagist/dt/maxeckel/livewire-editorjs.svg?style=flat-square)](https://packagist.org/packages/maxeckel/livewire-editorjs)
-![GitHub](https://img.shields.io/github/license/maxeckel/livewire-editorjs)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/maxeckel/livewire-editorjs.svg?style=for-the-badge)](https://packagist.org/packages/maxeckel/livewire-editorjs)
+[![Total Downloads](https://img.shields.io/packagist/dt/maxeckel/livewire-editorjs.svg?style=for-the-badge)](https://packagist.org/packages/maxeckel/livewire-editorjs)
+![GitHub](https://img.shields.io/github/license/maxeckel/livewire-editorjs?style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maxeckel/livewire-editorjs/run-tests?style=for-the-badge)
 
 This Package adds a Livewire component to your application, which will create an Editor.js instance for you.
 
@@ -101,7 +102,7 @@ changes you made. Please check the changelog after you updated this package.
 
 ``` php
 @livewire('editorjs', [
-    'editor-id' => "myEditor",
+    'editorId' => "myEditor",
     'value' => $value,
     'uploadDisk' => 'public',
     'downloadDisk' => 'public',
@@ -127,6 +128,11 @@ changes you made. Please check the changelog after you updated this package.
 
 The `editorId` parameter is used to generate a unique events from the Livewire component, 
 in order for you to be able to listen for events of specific editors (in case more than 1 is used on the same page)
+
+**Important!**  
+**Don't use the passed id anywhere else as `id` attribute on an HTML element, as the `editorId` is internally used
+as `id` on the wrapper `div` in which Editor.js gets initialized!  
+If you use the `id` somewhere else, the instance will break!**  
 
 #### value
 
@@ -187,6 +193,87 @@ public function saveEditorState($editorJsonData)
 }
 ```
 
+### Config
+
+In order to change the config, you'll first need to publish it:
+
+`php artisan vendor:publish --provider="Maxeckel\LivewireEditorjs\LivewireEditorjsServiceProvider" --tag="livewire-editorjs:config"`
+
+or  
+
+`php artisan vendor:publish` and select `livewire-editorjs:config` by entering its number.
+
+#### Default config
+
+```php
+<?php
+
+return [
+    'enabled_component_registration' => true,
+
+    'component_name' => 'editorjs',
+
+    // Defines on which disk images, uploaded through the editor, should be stored.
+    'default_img_upload_disk' => 'public',
+
+    // Defines on which disk images, downloaded by pasting an image url into the editor, should be stored.
+    'default_img_download_disk' => 'public',
+];
+```
+
+##### enabled_component_registration (default: `true`)
+
+This option defines, whether the ServiceProvider should register the default livewire component while booting.  
+Set this to `false` when you want to disable the internal component and use your own using the `make:editorjs` command.
+
+##### component_name (default: `editorjs`)
+
+This option defines, under which name the internal component should be registered.  
+By default this is set to `editorjs`, making the component accessible via "<livewire:editorjs>" or "@livewire('editorjs')".   
+You can change this to whatever fits you best!
+
+##### default_img_upload_disk (default: `public`)
+
+This option defines, to which disk uploaded images should be stored.  
+Even though the disk can be changed on a per instance level, this option lets you set a global default.  
+This is always used, when you don't provide a disk name to the component instance through its props.
+
+##### default_img_download_disk (default: `public`)
+
+This option defines, to which disk downloaded images from the web should be stored.  
+Even though the disk can be changed on a per instance level, this option lets you set a global default.  
+This is always used, when you don't provide a disk name to the component instance through its props.
+
+### Commands
+
+This package adds an `make:editorjs` command to your project.
+With this command it's possible for you to create your own EditorJs livewire component.
+This makes it possible for you to change and/or customize the component.
+
+If you add your own component this way, you should disable the packages internal component registration
+by setting `enabled_component_registration` in the `livewire-editorjs.php` config file to `false`.
+
+**Important!**  
+**By using this method to create your own component, any updates to the packages component won't affect you!**  
+**Which means any enhancements made won't be accessible to you.**
+
+### Extending
+
+If you want to customize the component or extend its functionality, the best way is to extend the component
+provided by this package. That way, you will receive updates and still can customize the internals.
+
+```php
+<?php
+
+namespace App\Http\Livewire;
+
+use Maxeckel\LivewireEditorjs\Http\Livewire\EditorJS;
+
+class MyCustomEditor extends EditorJS
+{
+    // Put your custom code here
+}
+```
 
 ### Testing
 
