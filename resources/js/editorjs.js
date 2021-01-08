@@ -7,7 +7,7 @@ import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Quote from '@editorjs/quote';
 
-window.editorInstance = function(dataProperty, editorId, readOnly) {
+window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, logLevel) {
     return {
         instance: null,
         data: null,
@@ -19,6 +19,10 @@ window.editorInstance = function(dataProperty, editorId, readOnly) {
                 holder: editorId,
 
                 readOnly,
+
+                placeholder,
+
+                logLevel,
 
                 tools: {
                     image: {

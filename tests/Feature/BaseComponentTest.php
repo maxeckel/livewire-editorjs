@@ -37,7 +37,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent(['editorId' => 'testEditor']);
 
-        $component->assertSeeHtml('x-data="editorInstance(\'data\', \'testEditor\', false)"');
+        $component->assertSeeHtml('x-data="editorInstance(\'data\', \'testEditor\', false, \'\', \'ERROR\')"');
     }
 
     /** @test */

@@ -106,8 +106,10 @@ changes you made. Please check the changelog after you updated this package.
     'value' => $value,
     'uploadDisk' => 'public',
     'downloadDisk' => 'public',
-    'class' => '...'
-    'readOnly' => true
+    'class' => '...',
+    'style' => '...',
+    'readOnly' => true,
+    'placeholder' => 'Lorem ipsum dolor sit amet'
 ])
 ```
 
@@ -118,7 +120,9 @@ changes you made. Please check the changelog after you updated this package.
    upload-disk="public" 
    download-disk="public" 
    class="..." 
+   style="..."
    :read-only="true"
+   placeholder="Lorem ipsum dolor sit amet"
 />
 ```
 
@@ -165,12 +169,25 @@ For styling the Editor/Blocks, please refer to the [documentation](https://edito
 
 Default: ""
 
+#### style (optional)
+
+As the name suggest you can pass in inline styles as you would with any other component.
+
+Default: ""
+
 #### readOnly (optional)
 
 You can pass this parameter with an value of "true" to set the editor into read only mode.
 This might be useful, if you want to display articles the same way, as they have been created.
 
 Default: `false`
+
+#### placeholder (optional)
+
+Using the `placeholder` property, you can pass a placeholder to the Editor.js instance, which will
+be displayed in an empty editor.
+
+Default: '' (set through the corresponding config option `default_placeholder`)
 
 ### Events / Saving state
 
@@ -213,12 +230,29 @@ return [
 
     'component_name' => 'editorjs',
 
+    // Sets the default placeholder to use when a new and empty Editor.js instance is created.
+    'default_placeholder' => '',
+
+    /*
+     * Available options:
+     *
+     * VERBOSE	Show all messages (default)
+     * INFO	Show info and debug messages
+     * WARN	Show only warn messages
+     * ERROR	Show only error messages
+     *
+     * Taken from the offical docs of Editor.js:
+     * https://editorjs.io/configuration#log-level
+     */
+    'editorjs_log_level' => 'ERROR',
+
     // Defines on which disk images, uploaded through the editor, should be stored.
     'default_img_upload_disk' => 'public',
 
     // Defines on which disk images, downloaded by pasting an image url into the editor, should be stored.
     'default_img_download_disk' => 'public',
 ];
+
 ```
 
 ##### enabled_component_registration (default: `true`)
@@ -231,6 +265,25 @@ Set this to `false` when you want to disable the internal component and use your
 This option defines, under which name the internal component should be registered.  
 By default this is set to `editorjs`, making the component accessible via "<livewire:editorjs>" or "@livewire('editorjs')".   
 You can change this to whatever fits you best!
+
+##### default_placeholder (default: `''`)
+
+This option sets a global default for the placeholder property of Editor.js.  
+The placeholder will be displayed when an instance is created without any content.
+
+##### editorjs_log_level (default: `'ERROR'`)
+
+This option sets the log level (console output) of Editor.js.  
+The available options are:
+
+| Value         | Definition                         |
+| ------------- | ---------------------------------- |
+| VERBOSE       | Show all messages                  |
+| INFO          | Show info and debug messages       |
+| WARN          | Show only warn messages            |
+| ERROR         | Show only error messages (default) |
+
+See [Editor.js docs](https://editorjs.io/configuration#log-level) for reference.
 
 ##### default_img_upload_disk (default: `public`)
 
