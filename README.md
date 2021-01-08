@@ -9,6 +9,8 @@ This Package adds a Livewire component to your application, which will create an
 
 Out of the box it already supports image uploads using Livewire and the Image plugin of Editor.js.
 
+**Packaged version of Editor.js: 2.19.1**
+
 ## Requirements
 
 This package requires you to have the following tools installed:
@@ -79,7 +81,7 @@ configuration:
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi",
-            "@php artisan vendor:publish --tag=livewire-editorjs:assets:compiled"
+            "@php artisan vendor:publish --tag=livewire-editorjs:assets:compiled --force"
         ]
     }
 }
