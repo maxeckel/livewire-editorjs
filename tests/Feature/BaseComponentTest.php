@@ -121,4 +121,26 @@ class BaseComponentTest extends TestCase
             ->assertEmitted('editorjs-save:testEditor2', [])
             ->assertNotEmitted('editorjs-save:testEditor');
     }
+
+    /** @test */
+    public function a_passed_string_as_value_gets_json_decoded_to_an_array()
+    {
+        $component = $this->createComponent([
+            'editorId' => 'testEditor',
+            'value' => '{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}'
+        ]);
+
+        $this->assertTrue(is_array($component->get('data')));
+    }
+
+    /** @test */
+    public function a_passed_in_array_as_value_is_stored_correctly()
+    {
+        $component = $this->createComponent([
+            'editorId' => 'testEditor',
+            'value' => json_decode('{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}', true)
+        ]);
+
+        $this->assertTrue(is_array($component->get('data')));
+    }
 }

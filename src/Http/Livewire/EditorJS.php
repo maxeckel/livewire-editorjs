@@ -53,6 +53,10 @@ class EditorJS extends Component
             $placeholder = config('livewire-editorjs.default_placeholder');
         }
 
+        if (is_string($value)) {
+            $value = json_decode($value, true);
+        }
+
         $this->editorId = $editorId;
         $this->data = $value;
         $this->class = $class;
