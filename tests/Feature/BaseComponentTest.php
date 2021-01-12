@@ -127,7 +127,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'value' => '{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}'
+            'value' => '{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}',
         ]);
 
         $this->assertTrue(is_array($component->get('data')));
@@ -138,7 +138,7 @@ class BaseComponentTest extends TestCase
     {
         $component = $this->createComponent([
             'editorId' => 'testEditor',
-            'value' => json_decode('{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}', true)
+            'value' => json_decode('{"time": 1610484123806, "blocks": [{"data": {"text": "testing123"}, "type": "paragraph"}], "version": "2.19.1"}', true),
         ]);
 
         $this->assertTrue(is_array($component->get('data')));
