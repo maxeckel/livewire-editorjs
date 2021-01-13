@@ -70,7 +70,7 @@ class BaseComponentTest extends TestCase
             'uploadDisk' => 'dummy',
         ]);
 
-        $component->set('uploadDisk', 'dummy');
+        $component->assertSet('uploadDisk', 'dummy');
     }
 
     /** @test */
@@ -81,7 +81,7 @@ class BaseComponentTest extends TestCase
             'downloadDisk' => 'dummy',
         ]);
 
-        $component->set('downloadDisk', 'dummy');
+        $component->assertSet('downloadDisk', 'dummy');
     }
 
     /** @test */
@@ -92,7 +92,7 @@ class BaseComponentTest extends TestCase
             'readOnly' => true,
         ]);
 
-        $component->set('readOnly', true);
+        $component->assertSet('readOnly', true);
     }
 
     /** @test */
