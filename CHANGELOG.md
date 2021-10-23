@@ -2,6 +2,14 @@
 
 All notable changes to `livewire-editorjs` will be documented in this file
 
+## 1.2.0 2021-10-23
+
+Updated packaged EditorJS version to 2.22.3
+
+## 1.1.0 2021-01-12
+
+- Automatically json_decode the passed in "value" prop to an assoc array when a string is passed in.
+
 ## 1.0.0 2021-01-08
 
 - Added option to disable the component of the package
