@@ -9,7 +9,7 @@ This Package adds a Livewire component to your application, which will create an
 
 Out of the box it already supports image uploads using Livewire and the Image plugin of Editor.js.
 
-**Packaged version of Editor.js: 2.19.1**
+**Packaged version of Editor.js: 2.22.3**
 
 ## Requirements
 
