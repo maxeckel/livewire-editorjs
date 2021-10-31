@@ -29,6 +29,8 @@ class EditorJS extends Component
 
     public $downloadDisk;
 
+    public $prefixPath;
+
     public $logLevel;
 
     public function mount(
@@ -39,7 +41,8 @@ class EditorJS extends Component
         $readOnly = false,
         $placeholder = null,
         $uploadDisk = null,
-        $downloadDisk = null
+        $downloadDisk = null,
+        $prefixPath = null
     ) {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
@@ -51,6 +54,10 @@ class EditorJS extends Component
 
         if (is_null($placeholder)) {
             $placeholder = config('livewire-editorjs.default_placeholder');
+        }
+
+        if (is_null($prefixPath)) {
+            $prefixPath = config('livewire-editorjs.upload_path');
         }
 
         if (is_string($value)) {
@@ -65,6 +72,7 @@ class EditorJS extends Component
         $this->placeholder = $placeholder;
         $this->uploadDisk = $uploadDisk;
         $this->downloadDisk = $downloadDisk;
+        $this->prefixPath = $prefixPath;
 
         $this->logLevel = config('livewire-editorjs.editorjs_log_level');
     }
@@ -80,7 +88,7 @@ class EditorJS extends Component
 
         // When no file name is passed, we use the hashName of the tmp file
         $storedFileName = $tmpFile->storeAs(
-            '/',
+            $this->prefixPath ?? '/',
             $fileName ?? $tmpFile->hashName(),
             $this->uploadDisk
         );
@@ -105,9 +113,17 @@ class EditorJS extends Component
         $name = basename($url);
         $content = file_get_contents($url);
 
-        Storage::disk($this->downloadDisk)->put($name, $content);
+        $storedFileName = Storage::disk($this->downloadDisk)->putFileAs($this->prefixPath ?? '/', $name, $content);
 
-        return Storage::disk($this->downloadDisk)->url($name);
+        if (config("filesystems.disks.$this->uploadDisk.driver") == 's3' &&
+            config("filesystems.disks.$this->uploadDisk.visibility", 'private') == 'private') {
+            return Storage::disk($this->downloadDisk)->temporaryUrl(
+                $storedFileName,
+                now()->addSeconds(config('livewire-editorjs.temporary_url_timeout', 86400))
+            );
+        }
+
+        return Storage::disk($this->downloadDisk)->url($storedFileName);
     }
 
     public function save()
