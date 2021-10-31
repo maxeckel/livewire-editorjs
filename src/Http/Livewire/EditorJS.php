@@ -85,9 +85,19 @@ class EditorJS extends Component
             $this->uploadDisk
         );
 
-        $this->dispatchBrowserEvent($eventName, [
-            'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
-        ]);
+        if (config("filesystems.disks.$this->uploadDisk.driver") == 's3' &&
+            config("filesystems.disks.$this->uploadDisk.visibility", 'private') == 'private') {
+            $this->dispatchBrowserEvent($eventName, [
+                'url' => Storage::disk($this->uploadDisk)->temporaryUrl(
+                    $storedFileName,
+                    now()->addSeconds(config('livewire-editorjs.temporary_url_timeout', 86400))
+                ),
+            ]);
+        } else {
+            $this->dispatchBrowserEvent($eventName, [
+                'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
+            ]);
+        }
     }
 
     public function loadImageFromUrl(string $url)
