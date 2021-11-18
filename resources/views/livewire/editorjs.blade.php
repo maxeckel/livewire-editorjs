@@ -1,6 +1,6 @@
 <div
     x-data="editorInstance('data', '{{ $editorId }}', {{ $readOnly ? 'true' : 'false' }}, '{{ $placeholder }}', '{{ $logLevel }}')"
-    x-init="init()"
+    x-init="initEditor()"
     class="{{ $class }}"
     style="{{ $style }}"
     wire:ignore

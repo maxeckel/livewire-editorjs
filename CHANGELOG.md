@@ -2,6 +2,10 @@
 
 All notable changes to `livewire-editorjs` will be documented in this file
 
+## 1.3.0 2021-11-18
+
+Renamed `init` method of alpine component to `initEditor` for Alpine v3 compatibility.
+
 ## 1.2.0 2021-10-23
 
 Updated packaged EditorJS version to 2.22.3

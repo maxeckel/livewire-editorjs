@@ -12,7 +12,7 @@ window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, 
         instance: null,
         data: null,
 
-        init() {
+        initEditor() {
             this.data = this.$wire.get(dataProperty);
 
             this.instance = new EditorJS({

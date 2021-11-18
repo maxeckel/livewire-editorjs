@@ -16,7 +16,7 @@ Out of the box it already supports image uploads using Livewire and the Image pl
 This package requires you to have the following tools installed:
 
 - [Laravel Livewire v2](https://laravel-livewire.com/docs/2.x/quickstart)
-- [Alpine.JS v2](https://github.com/alpinejs/alpine)
+- [Alpine.JS v2 or v3](https://alpinejs.dev/)
 
 Please refer to the linked guides on how to install these.
 
@@ -42,7 +42,7 @@ For the assets you have two options:
 
 1. Already, for production, compiled assets including the above mentioned plugins:
 ```bash
-php artisan vendor:publish --tag=livewire-editorjs:assets:compiled
+php artisan vendor:publish --tag=livewire-editorjs:assets:compiled --force
 ```
 
 This will copy the compiled assets into `public/vendor/livewire-editorjs`.
