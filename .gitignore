@@ -3,4 +3,5 @@ docs
 vendor
 coverage
 node_modules
+.idea
 .phpunit.result.cache
