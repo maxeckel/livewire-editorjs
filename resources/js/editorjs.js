@@ -7,16 +7,27 @@ import Code from '@editorjs/code';
 import InlineCode from '@editorjs/inline-code';
 import Quote from '@editorjs/quote';
 
-window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, logLevel) {
-    return {
+document.addEventListener('alpine:init', () => {
+    Alpine.data('editorjs', (placeholder = "", readOnly = false, logLevel = "ERROR") => ({
         instance: null,
         data: null,
+        id: null,
+
+        init() {
+            this.id = this.$id('editorjs');
+
+            this.$watch('data', () => {
+                if (this.instance !== null) {
+                    return;
+                }
+
+                this.initEditor();
+            });
+        },
 
         initEditor() {
-            this.data = this.$wire.get(dataProperty);
-
             this.instance = new EditorJS({
-                holder: editorId,
+                holder: this.id,
 
                 readOnly,
 
@@ -82,14 +93,12 @@ window.editorInstance = function(dataProperty, editorId, readOnly, placeholder, 
 
                 onChange: () => {
                     this.instance.save().then((outputData) => {
-                        this.$wire.set(dataProperty, outputData);
-
-                        this.$wire.call('save');
+                        this.data = outputData;
                     }).catch((error) => {
                         console.log('Saving failed: ', error)
                     });
                 }
             });
         }
-    }
-}
+    }));
+});
