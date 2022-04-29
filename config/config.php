@@ -26,4 +26,10 @@ return [
 
     // Defines on which disk images, downloaded by pasting an image url into the editor, should be stored.
     'default_img_download_disk' => 'public',
+
+    // Define the path of image stored
+    'upload_path' => 'editojs',
+
+    // temporary timeout for cloud storage private file ex: s3
+    'temporary_url_timeout' => 24 * 60 * 60, //1 day in seconds
 ];
