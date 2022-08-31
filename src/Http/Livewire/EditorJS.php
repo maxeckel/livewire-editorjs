@@ -28,7 +28,7 @@ class EditorJS extends Component
     public $uploadDisk;
 
     public $downloadDisk;
-    
+
     public $imagesPath;
 
     public $logLevel;
