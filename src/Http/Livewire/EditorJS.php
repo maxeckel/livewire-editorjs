@@ -28,6 +28,8 @@ class EditorJS extends Component
     public $uploadDisk;
 
     public $downloadDisk;
+    
+    public $imagesPath;
 
     public $logLevel;
 
@@ -80,7 +82,7 @@ class EditorJS extends Component
 
         // When no file name is passed, we use the hashName of the tmp file
         $storedFileName = $tmpFile->storeAs(
-            '/',
+            '/'.$this->imagesPath,
             $fileName ?? $tmpFile->hashName(),
             $this->uploadDisk
         );
