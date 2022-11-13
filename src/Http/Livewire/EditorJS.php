@@ -80,16 +80,29 @@ class EditorJS extends Component
             })
             ->first();
 
-        // When no file name is passed, we use the hashName of the tmp file
-        $storedFileName = $tmpFile->storeAs(
-            '/'.$this->imagesPath,
-            $fileName ?? $tmpFile->hashName(),
-            $this->uploadDisk
-        );
-
-        $this->dispatchBrowserEvent($eventName, [
-            'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
-        ]);
+        if (config("filesystems.disks.$this->uploadDisk.driver") == 's3' &&
+            config("filesystems.disks.$this->uploadDisk.visibility", 'private') == 'private') {
+            // When no file name is passed, we use the hashName of the tmp file
+            $storedFileName = $tmpFile->storePubliclyAs(
+                '/'.$this->imagesPath,
+                $fileName ?? $tmpFile->hashName(),
+                $this->uploadDisk
+            );
+    
+            $this->dispatchBrowserEvent($eventName, [
+                'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
+            ]);
+        } else {
+            $storedFileName = $tmpFile->storeAs(
+                '/'.$this->imagesPath,
+                $fileName ?? $tmpFile->hashName(),
+                $this->uploadDisk
+            );
+    
+            $this->dispatchBrowserEvent($eventName, [
+                'url' => Storage::disk($this->uploadDisk)->url($storedFileName),
+            ]);
+        }
     }
 
     public function loadImageFromUrl(string $url)
