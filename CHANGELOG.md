@@ -2,6 +2,11 @@
 
 All notable changes to `livewire-editorjs` will be documented in this file
 
+## 1.5.0 2023-04-07
+
+- Added support for Laravel 10 and PHP 8.2
+- Updated dependencies (EditorJS 2.22.3 -> 2.26.5)
+
 ## 1.4.0 2022-02-11
 
 Add support for Laravel 9 and PHP 8.1
