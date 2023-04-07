@@ -1,3 +1,13 @@
+/*!
+ * Image tool
+ * 
+ * @version 2.8.1
+ * 
+ * @package https://github.com/editor-js/image
+ * @licence MIT
+ * @author CodeX <https://codex.so>
+ */
+
 /*! For license information please see editor.js.LICENSE.txt */
 
 /**

@@ -3,13 +3,13 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/maxeckel/livewire-editorjs.svg?style=for-the-badge)](https://packagist.org/packages/maxeckel/livewire-editorjs)
 [![Total Downloads](https://img.shields.io/packagist/dt/maxeckel/livewire-editorjs.svg?style=for-the-badge)](https://packagist.org/packages/maxeckel/livewire-editorjs)
 ![GitHub](https://img.shields.io/github/license/maxeckel/livewire-editorjs?style=for-the-badge)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/maxeckel/livewire-editorjs/run-tests?style=for-the-badge)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/maxeckel/livewire-editorjs/run-tests.yml?style=for-the-badge)
 
 This Package adds a Livewire component to your application, which will create an Editor.js instance for you.
 
 Out of the box it already supports image uploads using Livewire and the Image plugin of Editor.js.
 
-**Packaged version of Editor.js: 2.22.3**
+**Packaged version of Editor.js: 2.26.5**
 
 ## Requirements
 
