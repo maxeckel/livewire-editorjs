@@ -2,6 +2,10 @@
 
 All notable changes to `livewire-editorjs` will be documented in this file
 
+## 1.4.0 2022-02-11
+
+Add support for Laravel 9 and PHP 8.1
+
 ## 1.3.0 2021-11-18
 
 Renamed `init` method of alpine component to `initEditor` for Alpine v3 compatibility.
