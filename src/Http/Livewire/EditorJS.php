@@ -28,6 +28,8 @@ class EditorJS extends Component
     public $uploadDisk;
 
     public $downloadDisk;
+    
+    public $uploadPath;
 
     public $imagesPath;
 
@@ -41,7 +43,8 @@ class EditorJS extends Component
         $readOnly = false,
         $placeholder = null,
         $uploadDisk = null,
-        $downloadDisk = null
+        $downloadDisk = null,
+        $uploadPath = '/'
     ) {
         if (is_null($uploadDisk)) {
             $uploadDisk = config('livewire-editorjs.default_img_upload_disk');
@@ -82,7 +85,7 @@ class EditorJS extends Component
 
         // When no file name is passed, we use the hashName of the tmp file
         $storedFileName = $tmpFile->storeAs(
-            '/'.$this->imagesPath,
+            $this->uploadPath.$this->imagesPath,
             $fileName ?? $tmpFile->hashName(),
             $this->uploadDisk
         );
